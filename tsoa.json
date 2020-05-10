@@ -1,0 +1,34 @@
+{
+    "swagger": {
+      "description": "Master API project for a TypeScript API with TSOA, ExpressJS, IOC and Swagger UI",
+      "version": "0.1.0",
+      "name": "News Assignment API Documentation",
+  
+      "outputDirectory": "./src/swagger",
+      "entryFile": "./src/server.ts",
+      "host": "localhost:7000",
+      "basePath": "",
+      "securityDefinitions": {
+        "api_key": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+          },
+          "jwt": {
+            "name": "jwt",
+            "type": "jwt",
+            "scopes": {
+              "read:project": "read project"
+            }
+          }
+       }
+    },
+    "routes": {
+        "basePath": "",
+        "entryFile": "./src/server.ts",
+        "routesDir": "./src/routes"
+    },
+    "ignore": [
+      "**/node_modules/**"
+    ]
+}

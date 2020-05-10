@@ -1,0 +1,351 @@
+{
+	"basePath": "/",
+	"consumes": [
+		"application/json"
+	],
+	"definitions": {
+		"Country": {
+			"properties": {
+				"CountryID": {
+					"type": "number",
+					"format": "double"
+				},
+				"CountryName": {
+					"type": "string"
+				},
+				"RegionName": {
+					"type": "string"
+				},
+				"SubregionName": {
+					"type": "string"
+				},
+				"PhoneCode": {
+					"type": "string"
+				}
+			},
+			"required": [
+				"CountryID",
+				"CountryName",
+				"RegionName",
+				"SubregionName",
+				"PhoneCode"
+			],
+			"type": "object",
+			"additionalProperties": true
+		},
+		"NewsDto": {
+			"properties": {
+				"id": {
+					"type": "number",
+					"format": "double",
+					"default": 0,
+					"x-nullable": true
+				},
+				"title": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				},
+				"shortDescription": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				},
+				"publicDate": {
+					"type": "number",
+					"format": "double",
+					"x-nullable": true
+				},
+				"image": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"ResponseDtoNewsDtoArray": {
+			"properties": {
+				"status": {
+					"type": "number",
+					"format": "double",
+					"default": 200,
+					"x-nullable": true
+				},
+				"data": {
+					"items": {
+						"$ref": "#/definitions/NewsDto"
+					},
+					"type": "array",
+					"x-nullable": true
+				},
+				"message": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"ResponseDtoNewsDto": {
+			"properties": {
+				"status": {
+					"type": "number",
+					"format": "double",
+					"default": 200,
+					"x-nullable": true
+				},
+				"data": {
+					"$ref": "#/definitions/NewsDto",
+					"x-nullable": true
+				},
+				"message": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"ResponseDtovoid": {
+			"properties": {
+				"status": {
+					"type": "number",
+					"format": "double",
+					"default": 200,
+					"x-nullable": true
+				},
+				"data": {
+					"x-nullable": true
+				},
+				"message": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"CreateNewsDto": {
+			"properties": {
+				"title": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				},
+				"shortDescription": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				},
+				"publicDate": {
+					"type": "string",
+					"format": "date-time",
+					"default": "2020-05-10T11:51:07.929Z",
+					"x-nullable": true
+				},
+				"image": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		}
+	},
+	"info": {
+		"title": "News Assignment API Documentation",
+		"version": "0.1.0",
+		"description": "Master API project for a TypeScript API with TSOA, ExpressJS, IOC and Swagger UI",
+		"license": {
+			"name": "ISC"
+		}
+	},
+	"paths": {
+		"/country": {
+			"post": {
+				"operationId": "Add",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/Country"
+						}
+					}
+				},
+				"summary": "Add new country from given data, returns id ID if successfull or\nundefined if there is an error. Transaction controlled.\nUSAGE: POST /country",
+				"security": [],
+				"parameters": [
+					{
+						"description": "- as body property",
+						"in": "body",
+						"name": "request",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/Country"
+						}
+					}
+				]
+			}
+		},
+		"/news": {
+			"get": {
+				"operationId": "GetNews",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ResponseDtoNewsDtoArray"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "publishDate",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "query",
+						"name": "direction",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
+			"post": {
+				"operationId": "CreateNews",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ResponseDtovoid"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "request",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CreateNewsDto"
+						}
+					}
+				]
+			}
+		},
+		"/news/{id}": {
+			"get": {
+				"operationId": "GetNewsById",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ResponseDtoNewsDto"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			},
+			"put": {
+				"operationId": "UpdateNews",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ResponseDtovoid"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					},
+					{
+						"in": "body",
+						"name": "request",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/CreateNewsDto"
+						}
+					}
+				]
+			},
+			"delete": {
+				"operationId": "DeleteNewsById",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ResponseDtovoid"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "id",
+						"required": true,
+						"type": "string"
+					}
+				]
+			}
+		}
+	},
+	"produces": [
+		"application/json"
+	],
+	"swagger": "2.0",
+	"securityDefinitions": {
+		"api_key": {
+			"type": "apiKey",
+			"name": "Authorization",
+			"in": "header"
+		},
+		"jwt": {
+			"name": "jwt",
+			"type": "jwt",
+			"scopes": {
+				"read:project": "read project"
+			}
+		}
+	},
+	"host": "localhost:7000"
+}
