@@ -142,10 +142,68 @@
 				"publicDate": {
 					"type": "string",
 					"format": "date-time",
-					"default": "2020-05-10T11:51:07.929Z",
+					"default": "2020-05-11T15:28:53.459Z",
 					"x-nullable": true
 				},
 				"image": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"LoginDto": {
+			"properties": {
+				"userId": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"username": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"role": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"jwt": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"ResponseDtoLoginDto": {
+			"properties": {
+				"status": {
+					"type": "number",
+					"format": "double",
+					"default": 200,
+					"x-nullable": true
+				},
+				"data": {
+					"$ref": "#/definitions/LoginDto",
+					"x-nullable": true
+				},
+				"message": {
+					"type": "string",
+					"x-nullable": true
+				}
+			},
+			"type": "object",
+			"additionalProperties": true
+		},
+		"UserDto": {
+			"properties": {
+				"username": {
+					"type": "string",
+					"default": "",
+					"x-nullable": true
+				},
+				"password": {
 					"type": "string",
 					"default": "",
 					"x-nullable": true
@@ -207,7 +265,11 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "query",
@@ -236,7 +298,11 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "body",
@@ -263,7 +329,11 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -286,7 +356,11 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
@@ -317,13 +391,44 @@
 						}
 					}
 				},
-				"security": [],
+				"security": [
+					{
+						"jwt": []
+					}
+				],
 				"parameters": [
 					{
 						"in": "path",
 						"name": "id",
 						"required": true,
 						"type": "string"
+					}
+				]
+			}
+		},
+		"/user/login": {
+			"post": {
+				"operationId": "Login",
+				"produces": [
+					"application/json"
+				],
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"schema": {
+							"$ref": "#/definitions/ResponseDtoLoginDto"
+						}
+					}
+				},
+				"security": [],
+				"parameters": [
+					{
+						"in": "body",
+						"name": "request",
+						"required": true,
+						"schema": {
+							"$ref": "#/definitions/UserDto"
+						}
 					}
 				]
 			}

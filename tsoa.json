@@ -26,7 +26,8 @@
     "routes": {
         "basePath": "",
         "entryFile": "./src/server.ts",
-        "routesDir": "./src/routes"
+        "routesDir": "./src/routes",
+        "authenticationModule": "./src/authorization.ts"
     },
     "ignore": [
       "**/node_modules/**"

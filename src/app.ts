@@ -9,6 +9,7 @@ import swaggerDoc from './swagger/swagger.json';
 
 import './controllers/country.controller';
 import './controllers/news.controller';
+import './controllers/user.controller';
 
 const app = express();
 app.use(cors());
