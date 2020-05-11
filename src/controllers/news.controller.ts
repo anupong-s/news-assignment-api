@@ -1,4 +1,4 @@
-import { Controller, Route, Get, Post, Body, Query, Delete, Put } from 'tsoa';
+import { Controller, Route, Get, Post, Body, Query, Delete, Put, Security } from 'tsoa';
 import CreateNewsDto from '../models/createNewsDto';
 import NewsDto from '../models/NewsDto';
 import ResponseDto from '../models/response';
@@ -15,6 +15,7 @@ export class NewsController extends Controller {
         this.newsService = new NewsService();
     }
 
+    @Security("jwt")
     @Get()
     public async getNews(@Query() publishDate: string, @Query() direction: string): Promise<ResponseDto<NewsDto[]>> {
         let res: ResponseDto<NewsDto[]> = new ResponseDto<NewsDto[]>();
@@ -33,6 +34,7 @@ export class NewsController extends Controller {
 
     }
 
+    @Security("jwt")
     @Get("/:id")
     public async getNewsById(id: string): Promise<ResponseDto<NewsDto>> {
         let res: ResponseDto<NewsDto> = new ResponseDto<NewsDto>();
@@ -52,6 +54,7 @@ export class NewsController extends Controller {
         
     }
 
+    @Security("jwt")
     @Post()
     public async createNews(@Body() request: CreateNewsDto): Promise<ResponseDto<void>> {
         const res: ResponseDto<void> = new ResponseDto<void>();
@@ -68,6 +71,7 @@ export class NewsController extends Controller {
         }
     }
 
+    @Security("jwt")
     @Put("/:id")
     public async updateNews(id: string, @Body() request: CreateNewsDto): Promise<ResponseDto<void>> {
 
@@ -87,6 +91,7 @@ export class NewsController extends Controller {
 
     }
 
+    @Security("jwt")
     @Delete("/:id")
     public async deleteNewsById(id: string): Promise<ResponseDto<void>> {
         let res: ResponseDto<void> = new ResponseDto<void>();
