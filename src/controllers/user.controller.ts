@@ -4,6 +4,7 @@ import LoginDto from '../models/loginDto';
 import ResponseDto from '../models/response';
 import UserService from '../services/user.service';
 import moment from 'moment';
+import encryp from '../utils/encryp';
 
 const HttpStatus = require('http-status-codes');
 const jwt = require('jsonwebtoken')  // ใช้งาน jwt module
@@ -30,8 +31,14 @@ export class UserController extends Controller {
             }
 
             // get username
-            let user = await this.userService.get(request.username, request.password);
+            let user = await this.userService.get(request.username);
             if (!user) {
+                res.message = `user not found`;
+                return res;
+            }
+
+            let isValid = await encryp.verify(request.password, user.password || "");
+            if (!isValid) {
                 res.message = `user not found`;
                 return res;
             }

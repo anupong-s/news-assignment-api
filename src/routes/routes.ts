@@ -73,7 +73,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "title": { "dataType": "string", "default": "" },
             "shortDescription": { "dataType": "string", "default": "" },
-            "publicDate": { "dataType": "datetime", "default": "2020-05-11T15:28:51.918Z" },
+            "publicDate": { "dataType": "datetime", "default": "2020-05-11T16:10:29.950Z" },
             "image": { "dataType": "string", "default": "" },
         },
         "additionalProperties": true,
@@ -85,6 +85,7 @@ const models: TsoaRoute.Models = {
             "userId": { "dataType": "string" },
             "username": { "dataType": "string" },
             "role": { "dataType": "string" },
+            "password": { "dataType": "string" },
             "jwt": { "dataType": "string" },
         },
         "additionalProperties": true,

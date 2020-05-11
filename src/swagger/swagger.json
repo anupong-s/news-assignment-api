@@ -142,7 +142,7 @@
 				"publicDate": {
 					"type": "string",
 					"format": "date-time",
-					"default": "2020-05-11T15:28:53.459Z",
+					"default": "2020-05-11T16:10:31.498Z",
 					"x-nullable": true
 				},
 				"image": {
@@ -165,6 +165,10 @@
 					"x-nullable": true
 				},
 				"role": {
+					"type": "string",
+					"x-nullable": true
+				},
+				"password": {
 					"type": "string",
 					"x-nullable": true
 				},

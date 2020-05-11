@@ -1,5 +1,4 @@
 import { Controller, Route, Get, Post, Body, Query, Delete, Patch } from 'tsoa';
-import Message from '../error.message';
 import logger from '../logger';
 import { String } from 'typescript-string-operations';
 import { Country } from '../models/country.model';
@@ -49,25 +48,25 @@ export class CountryController extends Controller {
 
             if (!request.CountryName) {
                 res.errors.push({
-                    details: String.Format(Message.Country.countryValidMessage, "country name")
+                    // details: String.Format(Message.Country.countryValidMessage, "country name")
                 });
             }
 
             if (!request.RegionName) {
                 res.errors.push({
-                    details: String.Format(Message.Country.countryValidMessage, "region name")
+                    // details: String.Format(Message.Country.countryValidMessage, "region name")
                 });
             }
 
             if (!request.SubregionName) {
                 res.errors.push({
-                    details: String.Format(Message.Country.countryValidMessage, "subregion name")
+                    // details: String.Format(Message.Country.countryValidMessage, "subregion name")
                 });
             }
 
             if (!request.PhoneCode) {
                 res.errors.push({
-                    details: String.Format(Message.Country.countryValidMessage, "phone code")
+                    // details: String.Format(Message.Country.countryValidMessage, "phone code")
                 });
             }
 
@@ -75,13 +74,13 @@ export class CountryController extends Controller {
 
             if (res.errors.length > 0) {
                 this.setStatus(HttpStatus.BAD_REQUEST);
-                res.message = Message.Init.errorRequest
+                // res.message = Message.Init.errorRequest
                 return res;
             }
 
             let country = await this.countryService.add(request);
 
-            res.message = Message.Country.addMessage;
+            // res.message = Message.Country.addMessage;
             res.data = country;
             //res.message = Message.Init.success;
             this.setStatus(HttpStatus.CREATED);
@@ -89,10 +88,10 @@ export class CountryController extends Controller {
 
         } catch (error) {
             this.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
-            res.message = Message.Init.error
+            // res.message = Message.Init.error
             res.errors.push({
-                code: Message.Country.addCode,
-                details: Message.Init.errorMessage
+                // code: Message.Country.addCode,
+                // details: Message.Init.errorMessage
             });
             return res;
         }
