@@ -1,17 +1,14 @@
 import logger from '../logger';
 import NewsDto from '../models/NewsDto';
 import CreateNewsDto from '../models/createNewsDto';
+import moment from 'moment';
 
 const db = require('../db');
 
 export default class NewsService {
 
-    // private countryRepository: ICountryRepository;
-    // private provinceRepository: IProvinceRepository;
-
     constructor() {
-        // this.countryRepository = countryRepository;
-        // this.provinceRepository = provinceRepository;
+
     }
 
     public async create(req: CreateNewsDto): Promise<void> {
@@ -20,25 +17,21 @@ export default class NewsService {
 
             return new Promise((resolve, reject) => {
 
-                let query = `INSERT INTO news(news_id, title, short_description, publish_date, created_by, updated_by) 
-                values(uuid(), ?, ?, ?, ?, ?)`;
+                let query = `INSERT INTO news(news_id, title, short_description, publish_date, image, created_by, updated_by) 
+                values(uuid(), ?, ?, ?, ?, ?, ?)`;
 
-                let values = [req.title, req.shortDescription, req.publicDate, 'ADMIN', 'ADMIN']
+                let values = [req.title, req.shortDescription, req.publishDate, req.image, 'ADMIN', 'ADMIN']
 
                 db.pool.query(query, values, function (error, results) {
                     if (error) return reject(error);
-
-                    console.log('The solution is: ', JSON.stringify(results));
-        
                     return resolve();
-
                 });
 
             });
 
         }
         catch (ex) {
-            logger.error(ex);
+            console.log(ex);
             throw ex;
         }
 
@@ -50,23 +43,21 @@ export default class NewsService {
 
             return new Promise((resolve, reject) => {
 
+                
                 let query = `UPDATE news SET 
                     title = ?, 
                     short_description = ?,
                     publish_date = ?,
+                    image = ?,
                     updated_date = ?,
                     updated_by = ?
                     WHERE news_id = ?
                     `
-                let values = [req.title, req.shortDescription, req.publicDate, new Date(), 'ADMIN', id];
+                let values = [req.title, req.shortDescription, req.publishDate, req.image, new Date(), 'ADMIN', id];
 
                 db.pool.query(query, values, function (error, results) {
-                    if (error) return reject(error);
-
-                    console.log('The solution is: ', JSON.stringify(results));
-        
+                    if (error) return reject(error);        
                     return resolve();
-
                 });
 
             });
@@ -90,8 +81,6 @@ export default class NewsService {
                 db.pool.query(query, values, function (error, results) {
                     if (error) return reject(error);
 
-                    console.log('The solution is: ', JSON.stringify(results));
-
                     if (results.length === 0) {
                         return resolve(null);
                     }
@@ -102,7 +91,7 @@ export default class NewsService {
                     data.id = row.news_id;
                     data.title = row.title;
                     data.shortDescription = row.short_description;
-                    data.publicDate = row.publish_date;
+                    data.publishDate = moment(row.publish_date).valueOf();
                     data.image = row.image;
         
                     return resolve(data);
@@ -141,7 +130,7 @@ export default class NewsService {
                         data.id = row.news_id;
                         data.title = row.title;
                         data.shortDescription = row.short_description;
-                        data.publicDate = row.publish_date;
+                        data.publishDate = row.publish_date;
                         data.image = row.image;
 
                         output.push(data);
@@ -170,11 +159,7 @@ export default class NewsService {
 
                 db.pool.query(query, values, function (error, results) {
                     if (error) return reject(error);
-
-                    console.log('The solution is: ', JSON.stringify(results));
-
                     return resolve();
-
                 });
 
             });
