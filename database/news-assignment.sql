@@ -25,3 +25,4 @@ CREATE TABLE `users` (
   `created_by` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+INSERT INTO `` (`user_id`,`username`,`password`,`role`,`created_date`,`created_by`) VALUES ('6052dcc8-939b-11ea-8137-5bd51a02bdac','admin','$2b$10$dicQ4rAegka3zaHS1Pwrhu/SNIDOM.TH3eNkQ3aajNxU1fDvmdOGK','admin','2020-05-11 22:23:33',NULL);
