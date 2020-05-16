@@ -112,15 +112,22 @@ export default class NewsService {
 
             return new Promise((resolve, reject) => {
 
+                let params: any = [];
                 let query = `SELECT * FROM news WHERE 1=1 `;
 
                 if (publishDate) {
-                    query += `and publish_date >= ${publishDate} `;
+                    query += `and publish_date between ? and ? `;
+             
+                    params.push(moment(publishDate).format("YYYY-MM-DD 00:00:00:000"));
+                    params.push(moment(publishDate).format("YYYY-MM-DD 23:59:59:59"));
+                } else {
+                    params.push(moment().format("YYYY-MM-DD 00:00:00:000"));
+                    params.push(moment().format("YYYY-MM-DD 23:59:59:59"));
                 }
 
-                query += `order by publish_date ${direction} `;
+                query += `order by title ${direction} `;
                 
-                db.pool.query('SELECT * FROM news', function (error, results) {
+                db.pool.query(query, params, function (error, results) {
                     if (error) return reject(error);
 
                     let output : NewsDto[] = Array<NewsDto>();
@@ -143,7 +150,7 @@ export default class NewsService {
             });
 
         } catch (ex) {
-            logger.error(ex);
+            console.log(ex)
             throw ex;
 
         }

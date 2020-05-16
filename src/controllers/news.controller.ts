@@ -3,6 +3,7 @@ import CreateNewsDto from '../models/createNewsDto';
 import NewsDto from '../models/NewsDto';
 import ResponseDto from '../models/response';
 import NewsService from '../services/news.service';
+import moment from 'moment';
 var HttpStatus = require('http-status-codes');
 
 @Route('news')
@@ -21,7 +22,10 @@ export class NewsController extends Controller {
         let res: ResponseDto<NewsDto[]> = new ResponseDto<NewsDto[]>();
         try {
 
-            let newsArr = await this.newsService.search(new Date(), "");
+            console.log('direction: ', direction);
+
+            let newPublishDate = moment(publishDate, 'DD/MM/YYYY').toDate();
+            let newsArr = await this.newsService.search(newPublishDate, direction);
             res.data = newsArr;
             return res;
 
