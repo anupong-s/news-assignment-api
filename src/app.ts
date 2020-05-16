@@ -7,7 +7,6 @@ import { RegisterRoutes } from './routes/routes'
 import swaggerUI from 'swagger-ui-express';
 import swaggerDoc from './swagger/swagger.json';
 
-import './controllers/country.controller';
 import './controllers/news.controller';
 import './controllers/user.controller';
 
