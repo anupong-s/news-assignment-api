@@ -62,6 +62,7 @@ export class UserController extends Controller {
             return res;
 
         } catch (error) {
+            console.log(error);
             this.setStatus(HttpStatus.INTERNAL_SERVER_ERROR);
             res.status = HttpStatus.INTERNAL_SERVER_ERROR;
             return res;

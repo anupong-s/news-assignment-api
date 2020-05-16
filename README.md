@@ -5,6 +5,10 @@ This assumes that you’re using npm package manager and nodejs version 10+ or 1
 - Install MySQL Database on your machine.
 - Install MySQL WorkBench on your machine.
 - Execute script for create database and table in database folder on this project (news-assignment.sql).
+- If you got error ' Client does not support authentication protocol requested by server'. Please run below script on MySQL Work brench
+```
+ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY '<your db password>'
+```
 
 ### 2. Configuration
 This API use ***.env*** file for configuration of the database and server port.

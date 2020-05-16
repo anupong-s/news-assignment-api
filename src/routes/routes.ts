@@ -59,7 +59,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "title": { "dataType": "string", "default": "" },
             "shortDescription": { "dataType": "string", "default": "" },
-            "publishDate": { "dataType": "datetime", "default": "2020-05-16T14:45:57.803Z" },
+            "publishDate": { "dataType": "datetime", "default": "2020-05-16T16:21:36.884Z" },
             "image": { "dataType": "string", "default": "" },
         },
         "additionalProperties": true,
