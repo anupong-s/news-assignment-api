@@ -1,0 +1,254 @@
+{
+	"info": {
+		"_postman_id": "4ae5532f-8665-4e59-884a-ecd7a2f151a1",
+		"name": "News",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "News / create news",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDUyZGNjOC05MzliLTExZWEtODEzNy01YmQ1MWEwMmJkYWMiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIwNzQ3Mjg4OTA3LCJpYXQiOjE1ODkyMTEyODh9.8sYiN6anMsuCshp_UPmABYxcjOeQ7WDZBufmaB84xsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "My title",
+							"type": "text"
+						},
+						{
+							"key": "shortDescription",
+							"value": "Description",
+							"type": "text"
+						},
+						{
+							"key": "publishDate",
+							"value": "2020-05-16 16:00:00",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7000/news",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"news"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "News / get news by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDUyZGNjOC05MzliLTExZWEtODEzNy01YmQ1MWEwMmJkYWMiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIwNzQ3Mjg4OTA3LCJpYXQiOjE1ODkyMTEyODh9.8sYiN6anMsuCshp_UPmABYxcjOeQ7WDZBufmaB84xsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/news/d2ab91fe-971d-11ea-9132-18504d91f001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"news",
+						"d2ab91fe-971d-11ea-9132-18504d91f001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "News / search news",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDUyZGNjOC05MzliLTExZWEtODEzNy01YmQ1MWEwMmJkYWMiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIwNzQ3Mjg4OTA3LCJpYXQiOjE1ODkyMTEyODh9.8sYiN6anMsuCshp_UPmABYxcjOeQ7WDZBufmaB84xsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/news/?publishDate=16/05/2020&direction=asc",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"news",
+						""
+					],
+					"query": [
+						{
+							"key": "publishDate",
+							"value": "16/05/2020"
+						},
+						{
+							"key": "direction",
+							"value": "asc"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "News / update news",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDUyZGNjOC05MzliLTExZWEtODEzNy01YmQ1MWEwMmJkYWMiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIwNzQ3Mjg4OTA3LCJpYXQiOjE1ODkyMTEyODh9.8sYiN6anMsuCshp_UPmABYxcjOeQ7WDZBufmaB84xsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "title",
+							"value": "My title",
+							"type": "text"
+						},
+						{
+							"key": "shortDescription",
+							"value": "Description",
+							"type": "text"
+						},
+						{
+							"key": "publicDate",
+							"value": "2020-04-01 16:00:00",
+							"type": "text"
+						},
+						{
+							"key": "image",
+							"value": "",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7000/news/N1234",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"news",
+						"N1234"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "News / delete news by id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDUyZGNjOC05MzliLTExZWEtODEzNy01YmQ1MWEwMmJkYWMiLCJ1c2VybmFtZSI6ImFkbWluIiwicm9sZSI6ImFkbWluIiwiZXhwIjoxNjIwNzQ3Mjg4OTA3LCJpYXQiOjE1ODkyMTEyODh9.8sYiN6anMsuCshp_UPmABYxcjOeQ7WDZBufmaB84xsw",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/news/49f4fb46-975b-11ea-9132-18504d91f001",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"news",
+						"49f4fb46-975b-11ea-9132-18504d91f001"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User / login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "username",
+							"value": "admin",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:7000/user/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"user",
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
