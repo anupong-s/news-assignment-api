@@ -3,8 +3,6 @@
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { Controller, ValidationService, FieldErrors, ValidateError, TsoaRoute } from 'tsoa';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-import { CountryController } from './../controllers/country.controller';
-// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { NewsController } from './../controllers/news.controller';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { UserController } from './../controllers/user.controller';
@@ -14,18 +12,6 @@ import * as express from 'express';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 
 const models: TsoaRoute.Models = {
-    "Country": {
-        "dataType": "refObject",
-        "properties": {
-            "CountryID": { "dataType": "double", "required": true },
-            "CountryName": { "dataType": "string", "required": true },
-            "RegionName": { "dataType": "string", "required": true },
-            "SubregionName": { "dataType": "string", "required": true },
-            "PhoneCode": { "dataType": "string", "required": true },
-        },
-        "additionalProperties": true,
-    },
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "NewsDto": {
         "dataType": "refObject",
         "properties": {
@@ -73,7 +59,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "title": { "dataType": "string", "default": "" },
             "shortDescription": { "dataType": "string", "default": "" },
-            "publishDate": { "dataType": "datetime", "default": "2020-05-14T14:30:06.045Z" },
+            "publishDate": { "dataType": "datetime", "default": "2020-05-16T09:44:00.037Z" },
             "image": { "dataType": "string", "default": "" },
         },
         "additionalProperties": true,
@@ -120,28 +106,6 @@ export function RegisterRoutes(app: express.Express) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-    app.post('/country',
-        function(request: any, response: any, next: any) {
-            const args = {
-                request: { "in": "body", "name": "request", "required": true, "ref": "Country" },
-            };
-
-            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
-
-            let validatedArgs: any[] = [];
-            try {
-                validatedArgs = getValidatedArgs(args, request);
-            } catch (err) {
-                return next(err);
-            }
-
-            const controller = new CountryController();
-
-
-            const promise = controller.add.apply(controller, validatedArgs as any);
-            promiseHandler(controller, promise, response, next);
-        });
-    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     app.get('/news',
         authenticateMiddleware([{ "jwt": [] }]),
         function(request: any, response: any, next: any) {

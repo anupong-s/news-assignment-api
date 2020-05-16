@@ -4,35 +4,6 @@
 		"application/json"
 	],
 	"definitions": {
-		"Country": {
-			"properties": {
-				"CountryID": {
-					"type": "number",
-					"format": "double"
-				},
-				"CountryName": {
-					"type": "string"
-				},
-				"RegionName": {
-					"type": "string"
-				},
-				"SubregionName": {
-					"type": "string"
-				},
-				"PhoneCode": {
-					"type": "string"
-				}
-			},
-			"required": [
-				"CountryID",
-				"CountryName",
-				"RegionName",
-				"SubregionName",
-				"PhoneCode"
-			],
-			"type": "object",
-			"additionalProperties": true
-		},
 		"NewsDto": {
 			"properties": {
 				"id": {
@@ -142,7 +113,7 @@
 				"publishDate": {
 					"type": "string",
 					"format": "date-time",
-					"default": "2020-05-14T14:30:07.550Z",
+					"default": "2020-05-16T09:44:01.567Z",
 					"x-nullable": true
 				},
 				"image": {
@@ -226,35 +197,6 @@
 		}
 	},
 	"paths": {
-		"/country": {
-			"post": {
-				"operationId": "Add",
-				"produces": [
-					"application/json"
-				],
-				"responses": {
-					"200": {
-						"description": "Ok",
-						"schema": {
-							"$ref": "#/definitions/Country"
-						}
-					}
-				},
-				"summary": "Add new country from given data, returns id ID if successfull or\nundefined if there is an error. Transaction controlled.\nUSAGE: POST /country",
-				"security": [],
-				"parameters": [
-					{
-						"description": "- as body property",
-						"in": "body",
-						"name": "request",
-						"required": true,
-						"schema": {
-							"$ref": "#/definitions/Country"
-						}
-					}
-				]
-			}
-		},
 		"/news": {
 			"get": {
 				"operationId": "GetNews",
